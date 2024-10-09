@@ -28,3 +28,27 @@
   padding: 30px;
   border-radius: 9px;
 }
+
+.Hidden{
+  display: none;
+}
+
+#statsPage{
+  background-color: whitesmoke;
+  border-radius: 15px;
+  padding: 60px;
+  width: 25%;
+  position: absolute;
+  right: 30%;
+  top: 30%;
+}
+
+#packsPage{
+  background-color: whitesmoke;
+  border-radius: 15px;
+  padding: 60px;
+  width: 25%;
+  position: absolute;
+  right: 30%;
+  top: 30%;
+}
