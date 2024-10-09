@@ -10,6 +10,8 @@ function App() {
   const [choices, setChoices] = useState([])
   const [rankPage, setRankPage] = useState("Hidden")
   const [packPage, setPackPage] = useState("Hidden")
+  const [makePage, setMakePage] = useState("Hidden")
+  const [itemCount, setItemCount] = useState(0)
   const topItems = packsArr[packIndex]
     .sort((a, b) => b.elo - a.elo) 
     .slice(0, 5)
@@ -54,6 +56,10 @@ function App() {
   }
 
   const packs = () => {
+    setItemCount(0)
+    if (makePage == "Shown") {
+      setMakePage("Hidden")
+    }
     if (packPage == "Hidden") {
       setPackPage("Shown")
     } else {
@@ -81,11 +87,26 @@ function App() {
     setPackPage("Hidden")
   }
 
+  const makePack = () => {
+    setMakePage("Shown")
+    setPackPage("Hidden")
+  }
+
+  const addItem = () => {
+    setItemCount(itemCount + 1)
+  }
+
+  const processPack = () => {
+    if (itemCount > 3) {
+      setMakePage("Hidden")
+    }
+  }
+
   return (
     <div className="App">
       <div className = "options">
         <div className = "new">
-          <button onClick = {start}>Start</button>
+          <button onClick = {start}>Refresh  </button>
         </div>
         <div className = "reset" onClick = {reset}>
           <button>Reset</button>
@@ -106,6 +127,10 @@ function App() {
         </div>
       </div>
       <div id = "statsPage" className = {rankPage}>
+        <select>
+          <option>Top 5</option>
+          <option>Bottom 5</option>
+        </select>
         <ul>
           {topItems.map(item => (
             <li key = {item.name}>{item.name} - {Math.floor(item.elo)}</li>
@@ -118,6 +143,23 @@ function App() {
               <button onClick = {() => packPick(index + 1)}>{pack}</button>
             ))}
           </ul>
+          <button onClick = {makePack}> Make Pack </button>
+      </div>
+      <div id = "makePage" className = {makePage}>
+        <div>
+          <input type = "text" placeholder = "Pack Title"></input>
+          <button onClick = {addItem}> Add 1 Item </button>
+        </div>
+        <div id = "items">
+          {Array.from({length: itemCount}, (_, index) => (
+            <div key = {index}>
+              <p>{index + 1}</p>
+              <input type = "text" placeholder = "Item's name"></input>
+              <input type = "text" placeholder = "Item's attribute"></input>
+            </div>
+          ))}
+        </div>
+        <button onClick = {processPack}> Submit </button>
       </div>
     </div>
   );

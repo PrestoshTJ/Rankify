@@ -16,6 +16,7 @@
   color: black;
   border-radius: 15px;
   padding: 30px;
+  cursor: pointer;
 }
 
 .options{
@@ -47,6 +48,16 @@
   background-color: whitesmoke;
   border-radius: 15px;
   padding: 60px;
+  width: 25%;
+  position: absolute;
+  right: 30%;
+  top: 30%;
+}
+
+#makePage{
+  background-color: whitesmoke;
+  border-radius: 15px;
+  padding: 200px;
   width: 25%;
   position: absolute;
   right: 30%;
